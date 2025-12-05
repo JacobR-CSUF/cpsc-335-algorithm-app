@@ -1,6 +1,6 @@
 # TitanCampus Algorithmic Assistant (TCAA)
 
-[cite_start]A fully interactive Python GUI application designed to demonstrate major algorithmic techniques including Graph Traversal, Greedy Algorithms, Dynamic Programming, and String Pattern Matching[cite: 5, 6].
+A fully interactive Python GUI application designed to demonstrate major algorithmic techniques including Graph Traversal, Greedy Algorithms, Dynamic Programming, and String Pattern Matching.
 
 ## 📋 Features
 
