@@ -2,7 +2,7 @@ class StudyPlannerAlgorithms:
     def greedy_schedule(self, tasks, max_time):
         """
         Greedy strategy: Sort by Value/Time ratio (density).
-        If ratios equal, pick shorter task. [cite: 50]
+        If ratios equal, pick shorter task.
         """
         # Sort desc by value/time
         sorted_tasks = sorted(tasks, key=lambda x: (x['value'] / x['time']), reverse=True)
@@ -21,7 +21,7 @@ class StudyPlannerAlgorithms:
 
     def dp_knapsack(self, tasks, max_time):
         """
-        0/1 Knapsack Dynamic Programming approach. [cite: 51]
+        0/1 Knapsack Dynamic Programming approach.
         Rows = tasks, Cols = time capacity.
         """
         n = len(tasks)

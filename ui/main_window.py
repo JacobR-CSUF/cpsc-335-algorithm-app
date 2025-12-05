@@ -9,6 +9,9 @@ from ui.info_tab import InfoTab
 class MainWindow(ttk.Frame):
     def __init__(self, parent):
         super().__init__(parent)
+
+        self.configure(style="TFrame")
+
         self.pack(fill="both", expand=True)
 
         # Title Label

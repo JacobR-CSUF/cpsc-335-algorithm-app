@@ -6,7 +6,7 @@ class GraphAlgorithms:
         self.graph = graph_data
 
     def bfs(self, start, end):
-        """Breadth-First Search for fewest hops[cite: 39]."""
+        """Breadth-First Search for fewest hops."""
         queue = [(start, [start])]
         visited = set()
 
@@ -25,7 +25,7 @@ class GraphAlgorithms:
         return None
 
     def dfs(self, start, end):
-        """Depth-First Search for connectivity[cite: 40]."""
+        """Depth-First Search for connectivity."""
         stack = [(start, [start])]
         visited = set()
 
@@ -44,7 +44,7 @@ class GraphAlgorithms:
         return None
 
     def dijkstra(self, start, end):
-        """Dijkstra's Shortest Path using Min-Heap[cite: 41]."""
+        """Dijkstra's Shortest Path using Min-Heap."""
         # Priority Queue stores (current_dist, current_node, path)
         pq = [(0, start, [start])]
         visited = set()
@@ -65,7 +65,7 @@ class GraphAlgorithms:
         return None, float('inf')
 
     def prim_mst(self, start_node):
-        """Prim's Minimum Spanning Tree[cite: 42]."""
+        """Prim's Minimum Spanning Tree."""
         mst_edges = []
         visited = {start_node}
         # Heap edges: (weight, from_node, to_node)

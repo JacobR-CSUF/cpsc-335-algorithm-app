@@ -4,7 +4,7 @@ import time
 class StringSearchAlgorithms:
 
     def naive_search(self, text, pattern):
-        """Naive pattern searching[cite: 61]."""
+        """Naive pattern searching."""
         start_time = time.perf_counter()
         m = len(pattern)
         n = len(text)
@@ -18,7 +18,7 @@ class StringSearchAlgorithms:
         return indices, (end_time - start_time)
 
     def rabin_karp(self, text, pattern):
-        """Rabin-Karp algorithm using rolling hash[cite: 62]."""
+        """Rabin-Karp algorithm using rolling hash."""
         start_time = time.perf_counter()
         d = 256
         q = 101
