@@ -3,7 +3,7 @@ from tkinter import ttk
 
 # Application Settings
 APP_TITLE = "TitanCampus Algorithmic Assistant (CPSC 335)"
-WINDOW_SIZE = "1100x750"  # Slightly larger for better spacing
+WINDOW_SIZE = "1100x750"
 
 # Graph Data (Adjacency List)
 CAMPUS_GRAPH = {
@@ -18,52 +18,49 @@ CAMPUS_GRAPH = {
 
 BUILDINGS = sorted(list(CAMPUS_GRAPH.keys()))
 
-# Color Palette (Modern "Aqua-like" Blue & Clean Grays)
+# Color Palette
 COLORS = {
-    "primary": "#007AFF",  # Titan/Aqua Blue
-    "primary_dark": "#0056b3",  # Darker Blue for active states
-    "bg_main": "#F5F7FA",  # Very light blue-grey background
-    "bg_sec": "#FFFFFF",  # White for content areas
-    "text": "#333333",  # Dark charcoal for text
-    "text_light": "#FFFFFF",  # White text
-    "accent": "#E1E8F0"  # Light accent for headers
+    "primary": "#007AFF",
+    "primary_dark": "#0056b3",
+    "bg_main": "#F5F7FA",
+    "bg_sec": "#FFFFFF",
+    "text": "#333333",
+    "text_light": "#FFFFFF",
+    "accent": "#E1E8F0",
+    "sidebar": "#2C3E50",  # Dark Blue-Grey for Sidebar
+    "sidebar_hover": "#34495E"
 }
 
 
 def setup_styles():
-    """Configures a sophisticated, modern look using standard ttk."""
     style = ttk.Style()
-
-    # 'clam' is the most flexible engine for custom coloring across OS
     style.theme_use('clam')
 
-    # 1. Global defaults
-    style.configure(".",
-                    background=COLORS["bg_main"],
-                    foreground=COLORS["text"],
-                    font=("Segoe UI", 10)  # Segoe UI is standard Windows modern font; falls back gracefully
-                    )
+    # Global Defaults
+    style.configure(".", background=COLORS["bg_main"], foreground=COLORS["text"], font=("Segoe UI", 10))
 
-    # 2. Tabs (TNotebook) - The "Folder" look
-    style.configure("TNotebook",
-                    background=COLORS["bg_main"],
-                    tabposition='n',
-                    borderwidth=0
+    # --- Sidebar Styling ---
+    style.configure("Sidebar.TFrame", background=COLORS["sidebar"])
+
+    # Sidebar Buttons (Flat, White Text)
+    style.configure("Sidebar.TButton",
+                    font=("Segoe UI", 11),
+                    background=COLORS["sidebar"],
+                    foreground=COLORS["text_light"],
+                    borderwidth=0,
+                    anchor="w",  # Left align text
+                    padding=10
                     )
-    style.configure("TNotebook.Tab",
-                    padding=[15, 8],
-                    font=("Segoe UI", 11, "bold"),
-                    foreground="#555555",
-                    background=COLORS["accent"],
-                    borderwidth=0
-                    )
-    style.map("TNotebook.Tab",
-              background=[("selected", COLORS["primary"])],
-              foreground=[("selected", COLORS["text_light"])],
-              expand=[("selected", [0, 0, 0, 0])]  # Removes weird shifting
+    style.map("Sidebar.TButton",
+              background=[("active", COLORS["sidebar_hover"]), ("pressed", COLORS["primary"])],
+              foreground=[("active", "#FFFFFF")]
               )
 
-    # 3. Buttons (Modern Flat Blue)
+    # --- Main Content Styling ---
+    style.configure("TFrame", background=COLORS["bg_main"])
+    style.configure("TLabel", background=COLORS["bg_main"], foreground=COLORS["text"])
+
+    # Standard Buttons
     style.configure("TButton",
                     font=("Segoe UI", 10, "bold"),
                     background=COLORS["primary"],
@@ -73,15 +70,11 @@ def setup_styles():
                     padding=8
                     )
     style.map("TButton",
-              background=[("active", COLORS["primary_dark"]), ("pressed", COLORS["primary_dark"])],
+              background=[("active", COLORS["primary_dark"])],
               relief=[("pressed", "flat")]
               )
 
-    # 4. Frames & Labels
-    style.configure("TFrame", background=COLORS["bg_main"])
-    style.configure("TLabel", background=COLORS["bg_main"], foreground=COLORS["text"])
-
-    # 5. Header Label Style
+    # Header
     style.configure("Header.TLabel",
                     font=("Segoe UI", 18, "bold"),
                     foreground=COLORS["primary"],
@@ -89,26 +82,10 @@ def setup_styles():
                     padding=[0, 10, 0, 10]
                     )
 
-    # 6. Inputs (Entry, Combobox)
+    # Inputs & Lists
     style.configure("TEntry", fieldbackground=COLORS["bg_sec"], padding=5)
     style.configure("TCombobox", fieldbackground=COLORS["bg_sec"], padding=5)
-
-    # 7. Treeview (Task List) - Clean white look with blue selection
-    style.configure("Treeview",
-                    background=COLORS["bg_sec"],
-                    fieldbackground=COLORS["bg_sec"],
-                    foreground=COLORS["text"],
-                    font=("Segoe UI", 10),
-                    rowheight=25,
-                    borderwidth=0
-                    )
-    style.configure("Treeview.Heading",
-                    font=("Segoe UI", 10, "bold"),
-                    background=COLORS["accent"],
-                    foreground=COLORS["text"],
-                    relief="flat"
-                    )
-    style.map("Treeview",
-              background=[("selected", COLORS["primary"])],
-              foreground=[("selected", COLORS["text_light"])]
-              )
+    style.configure("Treeview", background=COLORS["bg_sec"], fieldbackground=COLORS["bg_sec"],
+                    foreground=COLORS["text"], borderwidth=0)
+    style.configure("Treeview.Heading", font=("Segoe UI", 10, "bold"), background=COLORS["accent"],
+                    foreground=COLORS["text"], relief="flat")
